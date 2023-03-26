@@ -1,24 +1,13 @@
 version: 0.0
 os: linux
 files:
-  - source: /flask-api.wsgi
-    destination: /home/ec2-user/api
-  - source: /flask-api.conf
-    destination: /home/ec2-user/api
-  - source: /application.py
-    destination: /home/ec2-user/api
-  - source: /db_CRUD.py
-    destination: /home/ec2-user/api
-  - source: /playerData.py
-    destination: /home/ec2-user/api
-  - source: /requirements.txt
+  - source: /
     destination: /home/ec2-user/api
 hooks:
   BeforeInstall:
     - location: scripts/install_dependencies
       timeout: 300
       runas: root
-  ApplicationStart:
     - location: scripts/start_server
       timeout: 300
       runas: root
