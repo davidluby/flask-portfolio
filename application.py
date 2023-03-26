@@ -17,7 +17,7 @@ api = Api(application)
 
 @application.route('/test')
 def test():
-    return 'test'
+	return 'test'
 
 parser = reqparse.RequestParser()
 parser.add_argument('task')
