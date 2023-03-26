@@ -3,6 +3,8 @@ os: linux
 files:
   - source: /
     destination: /home/ec2-user/api
+  - source: /flask-api.conf
+    destination: /etc/httpd/conf.modules.d
 hooks:
   BeforeInstall:
     - location: scripts/install_dependencies
