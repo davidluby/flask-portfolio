@@ -12,10 +12,8 @@ from flask_restful import reqparse, Api, Resource
 import player_data
 import db_CRUD as crud
 
-def create_app():
-    application = Flask(__name__)
-    api = Api(application)
-    return api
+application = Flask(__name__)
+api = Api(application)
 
 @application.route('/test')
 def test():
@@ -69,4 +67,4 @@ api.add_resource(delete_deck, '/api/delete_deck')
 
 
 if __name__ == '__main__':
-    application = create_app()
+    application.run()
