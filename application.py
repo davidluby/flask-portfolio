@@ -15,7 +15,7 @@ import db_CRUD as crud
 application = Flask(__name__)
 api = Api(application)
 
-application.route('/test')
+@application.route('/test')
 def test():
     return 'test'
 
