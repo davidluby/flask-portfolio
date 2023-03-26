@@ -4,6 +4,10 @@ with open(activate_this) as file_:
 
 
 import sys
+import logging
+
+logging.basicConfig(stream=sys.stderr)
 sys.path.insert(0, '/home/ec2-user/api')
+sys.path.insert(0, '/hom/ec2-user/api/venv/bin/python3')
 
 from application import application
