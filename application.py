@@ -67,4 +67,4 @@ api.add_resource(delete_deck, '/api/delete_deck')
 
 
 if __name__ == '__main__':
-    application.run(host='0.0.0.0')
+    application.run()
