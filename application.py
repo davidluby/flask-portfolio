@@ -12,8 +12,8 @@ from flask_restful import reqparse, Api, Resource
 import player_data
 import db_CRUD as crud
 
-app = Flask(__name__)
-api = Api(app)
+application = Flask(__name__)
+api = Api(application)
 
 parser = reqparse.RequestParser()
 parser.add_argument('task')
@@ -63,4 +63,4 @@ api.add_resource(delete_deck, '/api/delete_deck')
 
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=8080)
+    application.run(host='0.0.0.0')
