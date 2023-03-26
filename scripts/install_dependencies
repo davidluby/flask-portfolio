@@ -1,8 +1,10 @@
 #!/bin/bash
 yum install -y httpd
 
-cd api
-source venv/bin/activate
-pip3 install -r requirements.txt
-deactivate
-cd
+requirements() {
+    cd api
+    source venv/bin/activate
+    pip3 install -r requirements.txt
+    deactivate
+    cd
+}
