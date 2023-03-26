@@ -2,17 +2,17 @@ version: 0.0
 os: linux
 files:
   - source: /flask-api.wsgi
-    destination: /api/
+    destination: /home/ec2-user/api
   - source: /flask-api.conf
-    destination: /api/
+    destination: /home/ec2-user/api
   - source: /application.py
-    destination: /api/
+    destination: /home/ec2-user/api
   - source: /db_CRUD.py
-    destination: /api/
+    destination: /home/ec2-user/api
   - source: /playerData.py
-    destination: /api/
+    destination: /home/ec2-user/api
   - source: /requirements.txt
-    destination: /api/
+    destination: /home/ec2-user/api
 hooks:
   BeforeInstall:
     - location: scripts/install_dependencies
