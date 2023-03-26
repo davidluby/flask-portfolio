@@ -15,10 +15,6 @@ import db_CRUD as crud
 application = Flask(__name__)
 api = Api(application)
 
-@application.route('/')
-def hello_world():
-	return 'Hello, World!'
-
 parser = reqparse.RequestParser()
 parser.add_argument('task')
 
