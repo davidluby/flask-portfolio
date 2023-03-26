@@ -4,6 +4,6 @@ with open(activate_this) as file_:
 
 
 import sys
-sys.path.insert(0, '/home/ec2-user/var/www/api')
+sys.path.insert(0, '/home/ec2-user/api')
 
 from application import application
