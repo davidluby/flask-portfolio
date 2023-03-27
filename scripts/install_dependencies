@@ -3,6 +3,4 @@ yum install -y httpd
 cd
 mkdir api
 cd api
-source venv/bin/activate
-pip install -r requirements.txt
-deactivate
+mkdir logs
