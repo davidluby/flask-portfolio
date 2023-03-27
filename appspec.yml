@@ -7,6 +7,7 @@ files:
     destination: /etc/httpd/conf
   - source: /flask-api.conf
     destination: /etc/httpd/conf.d
+file_exists_behavior: OVERWRITE
 hooks:
   BeforeInstall:
     - location: scripts/install_dependencies
