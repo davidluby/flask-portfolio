@@ -1,6 +1,6 @@
 #!/bin/bash
-yum install -y httpd
-cd
-mkdir api
-cd api
-mkdir logs
+yum install -y httpd python3-mod_wsgi
+#cd
+#mkdir api
+#cd api
+#mkdir logs
