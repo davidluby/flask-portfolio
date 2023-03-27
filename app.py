@@ -12,15 +12,21 @@ from flask_restful import reqparse, Api, Resource
 import player_data
 import db_CRUD as crud
 
-application = Flask(__name__)
-api = Api(application)
-
-@application.route('/test')
-def test():
-    return 'test'
+app = Flask(__name__)
+api = Api(app)
 
 parser = reqparse.RequestParser()
 parser.add_argument('task')
+
+@app.route('/plain_test')
+def plain_test():
+    return 'plain test endpoint'
+
+class rest_test(Resource):
+    def get(self):
+        return 'restful test endpoint'
+api.add_resource(rest_test, '/rest_test')
+
 
 # This endpoint is used to return player data when making decks
 class get_player_data(Resource):
@@ -67,4 +73,4 @@ api.add_resource(delete_deck, '/api/delete_deck')
 
 
 if __name__ == '__main__':
-    application.run()
+    app.run()

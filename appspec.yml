@@ -2,7 +2,7 @@ version: 0.0
 os: linux
 files:
   - source: /
-    destination: /home/ec2-user/api
+    destination: /root/api
   - source: /flask-api.conf
     destination: /etc/httpd/conf.d
 hooks:
