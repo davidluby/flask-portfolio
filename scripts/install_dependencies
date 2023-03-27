@@ -1,2 +1,8 @@
 #!/bin/bash
 yum install -y httpd
+cd
+mkdir api
+cd api
+python3 -m venv venv
+source venv/bin/activate
+pip install requirements.txt
