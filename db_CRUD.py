@@ -237,7 +237,7 @@ def display_tables():
 # This function establishes a connection to the MSSQL DB
 def connect():
     conn = pyodbc.connect(
-                            "Driver={ODBC Driver 13 for SQL Server};"
+                            "Driver={ODBC Driver 17 for SQL Server};"
                             "Server=website-db.cmtiqqjm470n.us-east-1.rds.amazonaws.com,1433;"
                             "Database=decks_db;"
                             "Trusted_Connection=no;"
