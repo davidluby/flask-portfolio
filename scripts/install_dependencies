@@ -11,7 +11,9 @@ sudo yum remove unixODBC-utf16 unixODBC-utf16-devel
 sudo ACCEPT_EULA=Y yum install msodbcsql17
 
 # Configuring app directory
-sudo mkdir /home/ec2-user/api/logs
+sudo su
+mkdir /home/ec2-user/api/logs
+exit
 pip3 install virtualenv
 pip3 install -U pip
 virtualenv -p python3 api/venv
