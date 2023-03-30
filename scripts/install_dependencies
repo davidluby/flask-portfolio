@@ -12,7 +12,7 @@ sudo ACCEPT_EULA=Y yum install msodbcsql17
 
 # Configuring app directory
 mkdir api
-mkdir api/logs
+sudu mkdir api/logs
 pip3 install virtualenv
 pip3 install -U pip
 virtualenv -p python3 venv
