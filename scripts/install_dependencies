@@ -12,13 +12,11 @@ sudo ACCEPT_EULA=Y yum install msodbcsql17
 
 # Configuring app directory
 mkdir api
-cd api
+mkdir api/logs
 pip3 install virtualenv
 pip3 install -U pip
 virtualenv -p python3 venv
 . venv/bin/activate
 pip install -r requirements.txt
 deactivate
-mkdir logs
-cd
 sudo ln -s /home/ec2-user/api /var/www
