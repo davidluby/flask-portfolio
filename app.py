@@ -18,7 +18,7 @@ api = Api(app)
 parser = reqparse.RequestParser()
 parser.add_argument('task')
 
-@app.route('/')
+@app.route('/plain_test')
 def plain_test():
     return 'Welcome to my API'
 
