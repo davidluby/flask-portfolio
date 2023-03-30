@@ -1,20 +1,20 @@
 #!/bin/bash
 # Installing apache and mod_wsgi
-sudo yum update
-sudo yum install -y tree httpd python3-mod_wsgi
+#sudo yum update
+#sudo yum install -y tree httpd python3-mod_wsgi
 
 # Installing pyodbc driver
-sudo su
-curl curl https://packages.microsoft.com/config/rhel/7/prod.repo > /etc/yum.repos.d/mssql-release.repo
-exit
-sudo yum remove unixODBC-utf16 unixODBC-utf16-devel
-sudo ACCEPT_EULA=Y yum install msodbcsql17
+#sudo su
+#curl curl https://packages.microsoft.com/config/rhel/7/prod.repo > /etc/yum.repos.d/mssql-release.repo
+#exit
+#sudo yum remove unixODBC-utf16 unixODBC-utf16-devel
+#sudo ACCEPT_EULA=Y yum install msodbcsql17
 
 # Configuring app directory
-mkdir api
-pip3 install virtualenv
-pip3 install -U pip
-virtualenv -p python3 api/venv
-. api/venv/bin/activate
-pip install -r requirements.txt
-deactivate
+#mkdir api
+#pip3 install virtualenv
+#pip3 install -U pip
+#virtualenv -p python3 venv
+#. api/venv/bin/activate
+#pip install -r requirements.txt
+#deactivate
