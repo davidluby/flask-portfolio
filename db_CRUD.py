@@ -38,17 +38,18 @@ def create_deck(deck):
     if id > 20:
         reset()
         initialize_tables()
-
-    for card in deck[1::]:
-        card['deckId'] = id
-            
-        cursor.execute(
-            'INSERT INTO cards VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)',
-            (card['deckId'], card['name'], card['pic'], card['age'], card['team'],
-            card['pos'], card['min'], card['fg'], card['thr'], card['reb'],
-            card['ast'], card['stl'], card['blk'], card['tov'], card['ppg'])
-            )
-            
+        create_deck(deck)
+    else:
+        for card in deck[1::]:
+            card['deckId'] = id
+                
+            cursor.execute(
+                'INSERT INTO cards VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)',
+                (card['deckId'], card['name'], card['pic'], card['age'], card['team'],
+                card['pos'], card['min'], card['fg'], card['thr'], card['reb'],
+                card['ast'], card['stl'], card['blk'], card['tov'], card['ppg'])
+                )
+                
 
     conn.commit()
 
