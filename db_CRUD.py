@@ -35,7 +35,7 @@ def create_deck(deck):
         """ 
     ).fetchval()
 
-    if id > 12:
+    if id > 20:
         reset()
         initialize_tables()
 
