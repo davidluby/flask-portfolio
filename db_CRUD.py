@@ -35,10 +35,6 @@ def create_deck(deck):
         """ 
     ).fetchval()
 
-    if id > 10:
-        reset()
-        initialize_tables()
-
     for card in deck[1::]:
         card['deckId'] = id
             
