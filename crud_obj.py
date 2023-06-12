@@ -49,9 +49,9 @@ class db_tool():
 
 
         if id > 20:
-            reset()
-            initialize_tables()
-            create_deck(deck)
+            self.reset()
+            self.initialize_tables()
+            self.create_deck(deck)
         else:
             for card in deck[1::]:
                 card['deckId'] = id
