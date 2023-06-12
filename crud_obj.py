@@ -17,7 +17,7 @@ class Card(Deck):
 
 class db_tool():
 
-    def connect():
+    def connect(self):
         db_conn = pyodbc.connect(
                             "Driver={ODBC Driver 17 for SQL Server};"
                             "Server=website-db.cmtiqqjm470n.us-east-1.rds.amazonaws.com,1433;"
