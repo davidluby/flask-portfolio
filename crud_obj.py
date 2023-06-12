@@ -17,18 +17,20 @@ class Card(Deck):
 
 class db_tool():
 
-    db_conn = pyodbc.connect(
-                        "Driver={ODBC Driver 17 for SQL Server};"
-                        "Server=website-db.cmtiqqjm470n.us-east-1.rds.amazonaws.com,1433;"
-                        "Database=decks_db;"
-                        "Trusted_Connection=no;"
-                        "UID=davidluby;"
-                        "PWD=ASIOB785$^%"
-                    )
+    def connect(pyodbc):
+        db_conn = pyodbc.connect(
+                            "Driver={ODBC Driver 17 for SQL Server};"
+                            "Server=website-db.cmtiqqjm470n.us-east-1.rds.amazonaws.com,1433;"
+                            "Database=decks_db;"
+                            "Trusted_Connection=no;"
+                            "UID=davidluby;"
+                            "PWD=ASIOB785$^%"
+                        )
+        return db_conn
     
 # This method creates a new deck in the DB
     def create_deck(self, deck):
-        conn = self.db_conn
+        conn = self.connect(pyodbc)
         cursor = conn.cursor()
 
 
@@ -71,7 +73,7 @@ class db_tool():
 
 # This method reads and returns all decks from the DB in JSON format
     def read_deck(self):
-        conn = self.db_conn
+        conn = self.connect(pyodbc)
         cursor = conn.cursor()
         cursor.execute(
             'SELECT * FROM decks'
@@ -112,7 +114,7 @@ class db_tool():
 
 # This method updates a deck in the DB
     def update_deck(self, deck):
-        conn = self.db_conn
+        conn = self.connect(pyodbc)
         cursor = conn.cursor()
 
         dateFormat = '%d-%m-%y %H:%M'
@@ -153,7 +155,7 @@ class db_tool():
 
 # This method deletes a deck from the DB
     def delete_deck(self, deck):
-        conn = self.db_conn
+        conn = self.connect(pyodbc)
         cursor = conn.cursor()
 
         cursor.execute(
@@ -164,7 +166,7 @@ class db_tool():
 
 # This method creates two tables in the DB for decks and cards
     def initialize_tables(self):
-        conn = self.db_conn
+        conn = self.connect(pyodbc)
         cursor = conn.cursor()
 
         decks =  """
@@ -205,7 +207,7 @@ class db_tool():
 
 # This method can be used to clear the DB
     def display_tables(self):
-        conn = self.db_conn
+        conn = self.connect(pyodbc)
         cursor = conn.cursor()
         cursor.execute(
         'SELECT * FROM INFORMATION_SCHEMA.TABLES;'
@@ -235,7 +237,7 @@ class db_tool():
 
 # This method will write all tables to the console
     def reset(self):
-        conn = self.db_conn
+        conn = self.connect(pyodbc)
         cursor = conn.cursor()
         cursor.execute('DROP TABLE cards')
         cursor.execute('DROP TABLE decks')
