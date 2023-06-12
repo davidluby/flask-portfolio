@@ -14,6 +14,8 @@ import db_CRUD as crud
 
 from crud_obj import db_tool
 
+tool = db_tool()
+
 app = Flask(__name__)
 api = Api(app)
 
@@ -48,7 +50,7 @@ class intake_deck(Resource):
         deck = request.get_json()
         
         if (deck[0]['id'] == 'null'):
-            db_tool.create_deck(deck)
+            tool.create_deck(deck)
         else:
             crud.update_deck(deck)
 
