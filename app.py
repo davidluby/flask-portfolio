@@ -14,8 +14,6 @@ import player_data
 
 # Import CRUD object
 from crud_obj import db_tool
-# Instantiate CRUD object
-tool = db_tool()
 
 app = Flask(__name__)
 api = Api(app)
@@ -50,6 +48,9 @@ class intake_deck(Resource):
     def post(self):
         deck = request.get_json()
         
+        # Instantiate CRUD object
+        tool = db_tool()
+
         if (deck[0]['id'] == 'null'):
             tool.create_deck(deck)
         else:
@@ -61,6 +62,8 @@ api.add_resource(intake_deck, '/api/intake_deck')
 # This endpoint is used to display all of the saved decks
 class show_decks(Resource):
     def get(self):
+        # Instantiate CRUD object
+        tool = db_tool()
         decks = tool.read_deck()
 
         return decks
@@ -72,6 +75,8 @@ api.add_resource(show_decks, '/api/show_deck')
 class delete_deck(Resource):
     def post(self):
         deck = request.get_json()
+        # Instantiate CRUD object
+        tool = db_tool()
         tool.delete_deck(deck)
 
 api.add_resource(delete_deck, '/api/delete_deck')
