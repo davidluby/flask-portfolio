@@ -1,5 +1,3 @@
-
-
 """
 # All statistics taken from and property of Basketball-Reference.com
 # Link: https://www.basketball-reference.com/

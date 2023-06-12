@@ -260,6 +260,7 @@ def main():
     #reset()
     display_tables()
     #read_deck()
+    db_tool.display_tables(db_tool.conn)
 
 
 if __name__ == '__main__':

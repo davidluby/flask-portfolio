@@ -4,13 +4,15 @@
 #
 """
 
-# Package imports
+# Package imports 
 from flask import Flask, request
 from flask_restful import reqparse, Api, Resource
 
 # Script imports
 import player_data
 import db_CRUD as crud
+
+from crud_obj import db_tool
 
 app = Flask(__name__)
 api = Api(app)
@@ -46,7 +48,7 @@ class intake_deck(Resource):
         deck = request.get_json()
         
         if (deck[0]['id'] == 'null'):
-            crud.create_deck(deck)
+            db_tool.create_deck(deck)
         else:
             crud.update_deck(deck)
 
