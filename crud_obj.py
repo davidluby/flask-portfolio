@@ -1,6 +1,3 @@
-import pyodbc
-from datetime import datetime
-import json
 
 class Deck:
     def __init__(self, id, saved, bias):
@@ -16,6 +13,9 @@ class Card(Deck):
 
 class db_tool():
 
+    import pyodbc
+    from datetime import datetime
+    import json
     db_conn = pyodbc.connect(
                         "Driver={ODBC Driver 17 for SQL Server};"
                         "Server=website-db.cmtiqqjm470n.us-east-1.rds.amazonaws.com,1433;"

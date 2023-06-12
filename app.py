@@ -10,7 +10,7 @@ from flask_restful import reqparse, Api, Resource
 
 # Script imports
 import player_data
-import db_CRUD as crud
+#import db_CRUD as crud
 
 # Import CRUD object
 from crud_obj import db_tool
