@@ -79,38 +79,40 @@ class db_tool():
             'SELECT * FROM decks'
         )
 
-        deck_keys = ['id', 'saved', 'bias']
+        deck_keys = ['id', 'saved', 'bias', 'cards']
+        card_keys = ['cardId', "deckId", "name", "pic", "age", "team", "pos", "min",
+                    "fg", "thr", "reb", "ast", "stl", "blk", "tov", "ppg"]
 
         decks = []
         for row in cursor:
             deck = {}
             i = -1
-            for data in row:
+            for key in deck_keys:
                 i += 1
-                deck[deck_keys[i]] = data
+                if i < 3:
+                    deck[key] = row[i]
+                else:
+                    deck[key] = []
             decks.append(deck)
 
-        card_keys = ['cardId', "deckId", "name", "pic", "age", "team", "pos", "min",
-                    "fg", "thr", "reb", "ast", "stl", "blk", "tov", "ppg"]
-        
-        entries = []
-        i = -1
+
         for deck in decks:
-            i += 1
-            combine = [deck]
             cursor.execute(
-                f'SELECT * FROM cards WHERE deckID = {deck["id"]}'
+                f'SELECT * FROM cards WHERE deckId = {deck["id"]}'
             )
             for row in cursor:
-                dict = {}
-                j = -1
-                for keys in card_keys:
-                    j += 1
-                    dict[keys] = row[j]
-                combine.append(dict)
-            entries.append(combine)
+                cards = {}
+                i = -1
+                for key in card_keys:
+                    i += 1
+                    cards[key] = row[i]
+                deck['cards'].append(cards)
 
-        return json.dumps(entries)
+        temp = decks
+        decks = {}
+        decks['decks'] = temp
+
+        return decks
 
 # This method updates a deck in the DB
     def update_deck(self, deck):
