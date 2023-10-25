@@ -11,7 +11,6 @@
 # Package imports
 from bs4 import BeautifulSoup
 import requests
-import json
 
 
 """
@@ -112,10 +111,8 @@ def format_json(data):
             dict[keys] = "null"
         else:
             dict[keys] = data[i-2]
-    
-    out = json.dumps(dict)
 
-    return(out)
+    return(dict)
 
 # Main method
 def main(name):

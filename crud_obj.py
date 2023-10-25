@@ -1,19 +1,7 @@
 import pyodbc
 from datetime import datetime
-import json
 
 
-class Deck:
-    def __init__(self, id, saved, bias):
-        self.id = id
-        self.saved = saved
-        self.bias = bias
-
-class Card(Deck):
-    def __init__(self, cardId, deckId, stats):
-        self.cardId = cardId
-        self.deckId = deckId
-        self.stats = stats
 
 class db_tool():
 
@@ -39,24 +27,20 @@ class db_tool():
 
         cursor.execute(
             'INSERT INTO decks VALUES (?, ?)',
-            (dateTimeNow, 'boston'))
+            (dateTimeNow, deck['bias']))
         conn.commit()
 
-        id = cursor.execute("""
-            SELECT * FROM decks
-            WHERE ID = (
-                SELECT MAX(id) FROM decks
-            )
-            """ 
-        ).fetchval()
+        id = cursor.execute(
+            'SELECT * FROM decks WHERE ID = (SELECT MAX(id) FROM decks)'
+            ).fetchval()
 
 
         if id > 20:
             self.reset()
             self.initialize_tables()
-            self.create_deck(deck)
+            self.create_deck(deck['cards'])
         else:
-            for card in deck[1::]:
+            for card in deck['cards']:
                 card['deckId'] = id
                     
                 cursor.execute(
@@ -71,7 +55,7 @@ class db_tool():
 
         return
 
-# This method reads and returns all decks from the DB in JSON format
+# This method returns all decks from the DB
     def read_deck(self):
         conn = self.connect()
         cursor = conn.cursor()
@@ -112,31 +96,27 @@ class db_tool():
         decks = {}
         decks['decks'] = temp
 
-        return decks
+        return temp
 
 # This method updates a deck in the DB
     def update_deck(self, deck):
         conn = self.connect()
         cursor = conn.cursor()
 
-        dateFormat = '%d-%m-%y %H:%M'
-        dateTimeNow = datetime.now().strftime(dateFormat)
-
-        id = deck[0]['id']
-
-        deck_keys = ['saved', 'bias']
-
-        cursor.execute(
-            f'UPDATE decks SET saved = ?, bias = ? WHERE id = ?;',
-            (dateTimeNow, 'Boston', id)
-        )
-        conn.commit()
-
         card_keys = ['name', 'pic', 'age', 'team', 'pos', 'min',
                     'fg', 'thr', 'reb', 'ast', 'stl', 'blk', 'tov', 'ppg']
 
+        dateFormat = '%d-%m-%y %H:%M'
+        dateTimeNow = datetime.now().strftime(dateFormat)
+
         cursor.execute(
-            f'SELECT * FROM cards WHERE deckId = {id}'
+            f'UPDATE decks SET saved = ?, bias = ? WHERE id = ?;',
+            (dateTimeNow, deck['bias'], deck['id'])
+        )
+        conn.commit()
+
+        cursor.execute(
+            f"SELECT * FROM cards WHERE deckId = {deck['id']}"
         )
 
         indices = []
@@ -144,7 +124,7 @@ class db_tool():
             indices.append(card[0])
 
         i = -1
-        for card in deck[1::]:
+        for card in deck['cards']:
             i += 1
             for key in card_keys:
                 cursor.execute(
@@ -156,12 +136,13 @@ class db_tool():
         return
 
 # This method deletes a deck from the DB
-    def delete_deck(self, deck):
+    def delete_deck(self, id):
         conn = self.connect()
         cursor = conn.cursor()
 
+        # Cascade delete takes care of child table, cards
         cursor.execute(
-            f'DELETE FROM decks WHERE id = {deck["id"]}'
+            f'DELETE FROM decks WHERE id = {id}'
         )
 
         cursor.commit()
@@ -237,7 +218,7 @@ class db_tool():
 
         return
 
-# This method will write all tables to the console
+# This method resets the DB
     def reset(self):
         conn = self.connect()
         cursor = conn.cursor()
@@ -251,3 +232,16 @@ class db_tool():
         conn.commit()
 
         return
+
+
+class Card(db_tool):
+    def __init__(self, cardId, deckId, stats):
+        self.cardId = cardId
+        self.deckId = deckId
+        self.stats = stats
+
+class Deck(Card):
+    def __init__(self, id, saved, bias):
+        self.id = id
+        self.saved = saved
+        self.bias = bias

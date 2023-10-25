@@ -6,80 +6,52 @@
 
 # Package imports 
 from flask import Flask, request
-from flask_restful import reqparse, Api, Resource
 
-# Script imports
+# Import scraper
 import player_data
-#import db_CRUD as crud
 
 # Import CRUD object
-from crud_obj import db_tool
+from crud_obj import Deck, Card, db_tool
 
 app = Flask(__name__)
-api = Api(app)
-
-parser = reqparse.RequestParser()
-parser.add_argument('task')
-
-@app.route('/plain_test')
-def plain_test():
-    return 'Welcome to my API'
-
-class rest_test(Resource):
-    def get(self):
-        return 'restful test endpoint'
-api.add_resource(rest_test, '/rest_test')
 
 
-# This endpoint is used to return player data when making decks
-class get_player_data(Resource):
-    def post(self):
-        name = request.get_json()
+@app.route('/api/get_data', methods = ['POST'])
+def get_data():
+    name = request.get_json()
+    data = player_data.main(name)
 
-        data = player_data.main(name)
+    return {'player_data':data}
 
-        return {'player_data':data}
+
+@app.route('/api/show_deck', methods = ['GET'])
+def show_deck():
+    tool = db_tool()
+    decks = tool.read_deck()
+
+    return decks
+
+
+@app.route('/api/intake_deck', methods = ['POST'])
+def intake_deck():
+    deck = request.get_json()
+    tool = db_tool()
+
+    if (deck['id'] == 'null'):
+        tool.create_deck(deck)
+    else:
+        tool.update_deck(deck)
     
-api.add_resource(get_player_data, '/api/get_data')
+    return ''
 
 
-# This endpoint is used to create and update decks
-class intake_deck(Resource):
-    def post(self):
-        deck = request.get_json()
-        
-        # Instantiate CRUD object
-        tool = db_tool()
+@ app.route('/api/delete_deck', methods = ['POST'])
+def delete_deck():
+    deck = request.get_json()
+    tool = db_tool()
+    tool.delete_deck(deck)
 
-        if (deck[0]['id'] == 'null'):
-            tool.create_deck(deck)
-        else:
-            tool.update_deck(deck)
-
-api.add_resource(intake_deck, '/api/intake_deck')
-
-
-# This endpoint is used to display all of the saved decks
-class show_decks(Resource):
-    def get(self):
-        # Instantiate CRUD object
-        tool = db_tool()
-        decks = tool.read_deck()
-
-        return decks
-    
-api.add_resource(show_decks, '/api/show_deck')
-
-
-# This endoint is used to delete a saved deck
-class delete_deck(Resource):
-    def post(self):
-        deck = request.get_json()
-        # Instantiate CRUD object
-        tool = db_tool()
-        tool.delete_deck(deck)
-
-api.add_resource(delete_deck, '/api/delete_deck')
+    return ''
 
 
 if __name__ == '__main__':
