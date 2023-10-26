@@ -92,7 +92,7 @@ def get_data(flag, data, soup):
                 picture = soup.find("div", {"class","media-item"})
                 data.append(picture.find("img")["src"])
             else:
-                current_season = soup.find("tr", {"id":"per_game.2023"})
+                current_season = soup.find("tr", {"id":"per_game.2024"})
                 data.append(current_season.find("td", {"data-stat":id}).get_text())
 
     return data
