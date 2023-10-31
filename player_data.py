@@ -118,8 +118,8 @@ def format_json(data):
 def main(name):
     flag, data, soup = find_player(name)
     stats = get_data(flag, data, soup)
-    out = format_json(stats)
-    return (out)
+    data = format_json(stats)
+    return {'player_data' : data}
 
 
 if __name__ == '__main__':

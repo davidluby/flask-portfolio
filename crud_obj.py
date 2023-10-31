@@ -96,7 +96,8 @@ class db_tool():
         decks = {}
         decks['decks'] = temp
 
-        return temp
+
+        return decks
 
 # This method updates a deck in the DB
     def update_deck(self, deck):

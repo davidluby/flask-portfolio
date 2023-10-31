@@ -11,19 +11,29 @@ from flask import Flask, request
 import player_data
 
 # Import CRUD object
-from crud_obj import Deck, Card, db_tool
+from crud_obj import db_tool
 
 app = Flask(__name__)
 
 
+# SEARCH FOR CARD
 @app.route('/api/get_data', methods = ['POST'])
-def get_data():
+def get_card():
     name = request.get_json()
     data = player_data.main(name)
 
-    return {'player_data':data}
+    return data
 
+# CREATE NEW DECK
+@app.route('/api/create_deck', methods = ['POST'])
+def create_deck():
+    deck = request.get_json()
+    tool = db_tool()
+    tool.create_deck(deck)
+    
+    return ''
 
+# READ STORED DECKS
 @app.route('/api/show_deck', methods = ['GET'])
 def show_deck():
     tool = db_tool()
@@ -31,21 +41,17 @@ def show_deck():
 
     return decks
 
-
-@app.route('/api/intake_deck', methods = ['POST'])
-def intake_deck():
+# UPDATE DECK IN DB
+@app.route('/api/update_deck', methods = ['PUT'])
+def update_deck():
     deck = request.get_json()
     tool = db_tool()
-
-    if (deck['id'] == 'null'):
-        tool.create_deck(deck)
-    else:
-        tool.update_deck(deck)
+    tool.update_deck(deck)
     
     return ''
 
-
-@ app.route('/api/delete_deck', methods = ['POST'])
+# DELETE DECK
+@ app.route('/api/delete_deck', methods = ['DELETE'])
 def delete_deck():
     deck = request.get_json()
     tool = db_tool()
