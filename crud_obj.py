@@ -2,7 +2,6 @@ import pyodbc
 from datetime import datetime
 
 
-
 class db_tool():
 
     def connect(self):
@@ -246,3 +245,7 @@ class Deck(Card):
         self.id = id
         self.saved = saved
         self.bias = bias
+
+if __name__ == '__main__':
+    tool = db_tool()
+    tool.initialize_tables()
