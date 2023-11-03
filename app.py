@@ -15,6 +15,9 @@ from crud_obj import db_tool
 
 app = Flask(__name__)
 
+@app.route('/')
+def landing():
+    return 'This is the API landing page'
 
 # SEARCH FOR CARD
 @app.route('/api/get_data', methods = ['POST'])
