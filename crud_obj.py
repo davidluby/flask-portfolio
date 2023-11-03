@@ -7,7 +7,7 @@ class db_tool():
     def connect(self):
         db_conn = pyodbc.connect(
                             "Driver={ODBC Driver 17 for SQL Server};"
-                            "Server=website-db.cmtiqqjm470n.us-east-1.rds.amazonaws.com,1433;"
+                            "Server=flask-api-db.c2cs59ejtfti.us-east-1.rds.amazonaws.com,1433;"
                             "Database=decks_db;"
                             "Trusted_Connection=no;"
                             "UID=davidluby;"
@@ -152,16 +152,14 @@ class db_tool():
         conn = self.connect()
         cursor = conn.cursor()
 
-        decks =  """
-            IF NOT EXISTS (SELECT * FROM sysobjects WHERE name='decks' AND xtype='U') 
+        decks =  """IF NOT EXISTS (SELECT * FROM sysobjects WHERE name='decks' AND xtype='U') 
                 CREATE TABLE decks (
                     id INT IDENTITY(1,1) PRIMARY KEY,
                     saved VARCHAR(30),
                     bias VARCHAR(30));
                 """
         
-        cards = """
-            IF NOT EXISTS (SELECT * FROM sysobjects WHERE name='cards' AND xtype='U')
+        cards = """IF NOT EXISTS (SELECT * FROM sysobjects WHERE name='cards' AND xtype='U')
                 CREATE TABLE cards (
                     cardId INT PRIMARY KEY IDENTITY(1,1),
                     deckId INT FOREIGN KEY(deckId) REFERENCES decks(id) ON DELETE CASCADE,
