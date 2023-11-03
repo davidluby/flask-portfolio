@@ -1,0 +1,82 @@
+/* this document houses homepage-specific styling*/
+
+@media screen and (max-width: 950px){
+    #logo-linked {
+        background-image: url("/static/images/logo-linked.jpg");
+        background-size: 100%;
+    }
+    #logo-github {
+        background-image: url("/static/images/logo-github.jpg");
+        background-size: 100%;
+    }
+}
+@media screen and (min-width: 950px){
+    #logo-linked {
+        background-image: url("/static/images/logo-linked.png");
+        background-size: 85%;
+        transition: all 500ms;
+    }
+    #logo-linked:hover {
+        background-image: url("/static/images/logo-linked.jpg");
+        background-size: 100%;
+    }
+    #logo-github {
+        background-image: url("/static/images/logo-github.png");
+        background-size: 85%;
+        transition: all 500ms;
+    }
+    #logo-github:hover {
+        background-image: url("/static/images/logo-github.jpg");
+        background-size: 100%;
+    }
+}
+
+
+
+/* class definitions*/
+.sb-mar-hom {
+    margin-top: 15%;
+    margin-bottom: 15%;
+}
+
+
+/* id definitions*/
+#avatar {
+    width: 40%;
+    height: auto;
+    border-radius: 50%;
+    border: .1rem solid #007A33;
+}
+#card-top {
+    font-size: 1.65rem;
+}
+#card-body {
+    font-size: 1rem;
+}
+
+
+
+#logo-linked {
+    margin: 0rem;
+    height: 1.75rem;
+    width: 1.75rem;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+#logo-github {
+    margin: 0rem;
+    height: 1.75rem;
+    width: 1.75rem;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+
+#bike {
+    width: 50%;
+    height: auto;
+    border-radius: 5%;
+    transition: all 500ms;
+}
+
+

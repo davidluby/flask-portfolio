@@ -1,0 +1,51 @@
+{% extends 'index.html' %}
+
+{% block title %}
+   Homepage
+{% endblock %}
+
+{% block head %}
+   <link rel="stylesheet" href="/static/css/home.css">
+{% endblock %}
+
+{% block content %}
+
+   <!--welcome-->
+   <div class="sb-mar-hom tmid">
+      <div class="sb-two ymid tleft">
+         <h1>
+            Welcome to my API
+         </h1>
+         <p>
+            This is a Flask API behind an Apache HTTP server using mod_wsgi. It is a CI/CD deployment on an AWS EC2 instance. The Endpoints navbar dropdown returns data from endpoints normally facilitated by the corresponding next.js frontend application.
+         </p>
+         <p>
+            On an unrelated note, this site is an artifact of my early work in web development. It was originally deployed via AWS Elastic Beanstalk, which is a sort of batteries-included version of my current architecture.
+         </p>
+         <p>
+            I find the CSS interesting because it reflects why I settled on Tailwind for my current project. Many of my class definitions here do only one thing, like utility classes in Tailwind. But all that CSS felt too messy. However, in revisiting this site after having gone all-in on Tailwind, I find the HTML much easier to read where I <i>did</i> use typical CSS classes. It is an interesting tradeoff.
+         </p>
+      </div>
+
+      <!--avatar-->
+      <div class="sb-two ymid">
+         <div>
+            <img src="/static/images/best - crop.jpg" id ="avatar">
+         </div>
+         <div>
+            <h2 class="mar-strip" id="card-top">
+               <b>David Luby</b>
+            </h2>
+            <p class="card-body mar-strip pad-strip">
+               davidluby273@gmail.com | Boston Area
+            </p>
+            <p class="mar-strip pad-strip" id="card-body">
+               BS, Mechanical Engineering, University of New Hampshire
+            </p>
+               <a href="https://linkedin.com/in/david-luby/" class="d-inline-block align-middle card-body" id="logo-linked" target="_blank" rel="noopener noreferrer"></a>
+               <a href="https://github.com/davidluby" class="d-inline-block align-middle card-body" id="logo-github" target="_blank" rel="noopener noreferrer"></a>
+            </p>            
+         </div>
+      </div>
+   </div>
+{% endblock %}

@@ -5,7 +5,7 @@
 """
 
 # Package imports 
-from flask import Flask, request
+from flask import Flask, request, render_template
 
 # Import scraper
 import player_data
@@ -17,7 +17,11 @@ app = Flask(__name__)
 
 @app.route('/')
 def landing():
-    return 'This is the API landing page'
+    return render_template('home.html')
+
+@app.route('/resume.html')
+def resume():
+    return render_template('resume.html')
 
 # SEARCH FOR CARD
 @app.route('/api/get_data', methods = ['POST'])
