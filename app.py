@@ -6,7 +6,7 @@
 
 # Package imports 
 from flask import Flask, jsonify, session, request, redirect, url_for, render_template
-#from flask_jwt_extended import JWTManager, create_access_token, jwt_required, get_jwt_identity, get_jwt
+from flask_jwt_extended import JWTManager, create_access_token, jwt_required, get_jwt_identity, get_jwt
 import bcrypt
 
 # Import scraper
@@ -79,7 +79,7 @@ def delete_deck():
     return ''
 
 
-
+"""
 # Fitness App Configuration
 app.config['SECRET_KEY'] = 'the_secret_key'
 app.config['JWT_SECRET_KEY'] = 'the_jwt_secret_key'
@@ -121,7 +121,7 @@ def login():
     else:
         return jsonify({'message': 'Login Failed'}), 401
 
-
+"""
 
 
 if __name__ == '__main__':
