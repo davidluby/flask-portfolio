@@ -6,8 +6,8 @@
 
 # Package imports 
 from flask import Flask, jsonify, session, request, redirect, url_for, render_template
-from flask_jwt_extended import JWTManager, create_access_token, jwt_required, get_jwt_identity, get_jwt
-import bcrypt
+#from flask_jwt_extended import JWTManager, create_access_token, jwt_required, get_jwt_identity, get_jwt
+#import bcrypt
 
 # Import scraper
 import player_data
