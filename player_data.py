@@ -76,13 +76,12 @@ def find_player(full_name):
  # player's statistics from Basketball-Reference.com
 """
 def get_data(flag, data, soup):
-
     if flag == False:
         pass
 
     else:
         # Initialize list of ID tags to parse soup
-        id_names = ["meta", "age", "team_id", "pos", "mp_per_g", "fg_pct", "fg3_pct",
+        id_names = ["meta", "age", "team_name_abbr", "pos", "mp_per_g", "fg_pct", "fg3_pct",
                 "trb_per_g", "ast_per_g", "stl_per_g", "blk_per_g",
                 "tov_per_g", "pts_per_g"]
     
@@ -92,7 +91,8 @@ def get_data(flag, data, soup):
                 picture = soup.find("div", {"class","media-item"})
                 data.append(picture.find("img")["src"])
             else:
-                current_season = soup.find("tr", {"id":"per_game.2024"})
+                print(id)
+                current_season = soup.find("tr", {"id":"per_game_stats.2025"})
                 data.append(current_season.find("td", {"data-stat":id}).get_text())
 
     return data
