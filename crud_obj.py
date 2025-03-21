@@ -7,11 +7,11 @@ class db_tool():
     def connect(self):
         db_conn = pyodbc.connect(
                             "Driver={ODBC Driver 17 for SQL Server};"
-                            "Server=flask-api-db.c2cs59ejtfti.us-east-1.rds.amazonaws.com,1433;"
+                            "Server=database-1.cqxosuqkkyqm.us-east-1.rds.amazonaws.com,1433;"
                             "Database=decks_db;"
                             "Trusted_Connection=no;"
-                            "UID=davidluby;"
-                            "PWD=ASIOB785$^%"
+                            "UID=admin;"
+                            "PWD=OIBSDOisab234."
                         )
         return db_conn
     
