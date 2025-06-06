@@ -62,7 +62,7 @@ html *{
 
 /* navbar */
 .bar {
-    background: linear-gradient(to right, #007A33, #004f21);
+    background: linear-gradient(to right, #007A33, #00124f);
     box-shadow: 0rem 0rem .2rem .005rem #000000;
 }
 .nav-but {
