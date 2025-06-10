@@ -3,6 +3,9 @@
 # Date Created: 2/15/2023
 #
 """
+from ddtrace import patch_all
+patch_all()
+
 #
 # Package imports 
 from flask import Flask, jsonify, session, request, redirect, url_for, render_template
