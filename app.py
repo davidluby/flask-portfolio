@@ -9,7 +9,7 @@ from ddtrace import tracer
 tracer.configure(
     https=True,
     hostname="test-hostname",
-    port="4999",
+    port="5000",
 )
 
 # Unix domain socket configuration
