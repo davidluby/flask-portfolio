@@ -3,8 +3,19 @@
 # Date Created: 2/15/2023
 #
 """
-from ddtrace import patch_all
-patch_all()
+from ddtrace import tracer
+
+# Network sockets
+tracer.configure(
+    https=True,
+    hostname="test-hostname",
+    port="4999",
+)
+
+# Unix domain socket configuration
+tracer.configure(
+    uds_path="/var/run/datadog/apm.socket",
+)
 
 #
 # Package imports 
